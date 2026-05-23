@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Arnold's Gym - Horizontal Website</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .container {
+      display: flex;
+      height: 100vh;
+      width: 600vw; /* 6 sections */
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .section {
+      width: 100vw;
+      height: 100vh;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+      overflow-y: auto;
+    }
+
+    .section:nth-child(odd) {
+      background: #fff;
+    }
+
+    .section:nth-child(even) {
+      background: #f1f1f1;
+    }
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      color: #222;
+    }
+
+    h2 {
+      margin-bottom: 15px;
+      color: #444;
+    }
+
+    p {
+      max-width: 700px;
+      line-height: 1.6;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    a {
+      text-decoration: none;
+      color: red;
+      font-weight: bold;
+    }
+
+    .nav {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 100;
+    }
+
+    .dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: gray;
+      cursor: pointer;
+    }
+
+    .dot.active {
+      background: red;
+    }
+
+    .menu-bar {
+      position: fixed;
+      top: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 20px;
+      z-index: 100;
+      background: rgba(255,255,255,0.9);
+      padding: 10px 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .menu-bar a {
+      color: #333;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .menu-bar a:hover {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Menu -->
+<div class="menu-bar">
+  <a onclick="scrollToSection(0)">Home</a>
+  <a onclick="scrollToSection(1)">Services</a>
+  <a onclick="scrollToSection(2)">Classes</a>
+  <a onclick="scrollToSection(3)">Trainer</a>
+  <a onclick="scrollToSection(4)">About</a>
+  <a onclick="scrollToSection(5)">Contact</a>
+</div>
+
+<!-- Sections -->
+<div class="container" id="container">
+  <!-- Home -->
+  <div class="section">
+    <h1>Home</h1>
+    <h2>Win that battle in your mind</h2>
+    <p>Welcome to Arnold's Gym. Your fitness, our passion.</p>
+    <a href="#">Join Now</a>
+  </div>
+
+  <!-- Services -->
+  <div class="section">
+    <h1>Services</h1>
+    <p>💪 Full Body Exercises</p>
+    <p>🏃‍♂️ Leg Workout</p>
+    <p>🏋️‍♂️ Chest Workout</p>
+    <p>📢 Advertising & Promotions</p>
+    <p>🔥 Personalized Plans</p>
+  </div>
+
+  <!-- Classes -->
+  <div class="section">
+    <h1>Classes</h1>
+    <h2>Our Offerings</h2>
+    <p>✅ Strength Training</p>
+    <p>✅ Cardio Blast</p>
+    <p>✅ Yoga & Stretch</p>
+    <p>✅ Functional Fitness</p>
+    <p>✅ Personal Coaching</p>
+    <p>✅ Group Motivation Classes</p>
+  </div>
+
+  <!-- Trainer -->
+  <div class="section">
+    <h1>Trainers</h1>
+    <p>👨‍🏫 Md Ajim - Head Trainer</p>
+    <p>👨‍🏫 Ahshan Ansari - Strength Coach</p>
+    <p>👨‍🏫 Md Dilnawaj - Cardio Expert</p>
+    <p>👨‍🏫 Shan Ansari - Yoga Instructor</p>
+  </div>
+
+  <!-- About -->
+  <div class="section">
+    <h1>About Us</h1>
+    <p>At Arnold's Gym, fitness is not just a routine but a lifestyle. Our mission is to empower you to achieve your health and fitness goals by providing top-notch facilities, expert trainers, and a supportive community. Whether you are a beginner or a seasoned athlete, we have something for everyone.</p>
+  </div>
+
+  <!-- Contact -->
+  <div class="section">
+    <h1>Contact</h1>
+    <p>📍 Address: Bhandaridih, Giridih, Jharkhand</p>
+    <p>📧 Email: <a href="mailto:ajim55539@gmail.com">ajim55539@gmail.com</a></p>
+    <p>📱 Instagram: <a href="https://www.instagram.com/ajim___khan_09/">@ajim___khan_09</a></p>
+    <p>🗺️ <a href="https://maps.windows.com/?form=WNAMSH&lvl=12.000063&cp=24.176534~86.283412&sty=r&trfc=0">View on Map</a></p>
+  </div>
+</div>
+
+<!-- Navigation Dots -->
+<div class="nav">
+  <div class="dot active" onclick="scrollToSection(0)"></div>
+  <div class="dot" onclick="scrollToSection(1)"></div>
+  <div class="dot" onclick="scrollToSection(2)"></div>
+  <div class="dot" onclick="scrollToSection(3)"></div>
+  <div class="dot" onclick="scrollToSection(4)"></div>
+  <div class="dot" onclick="scrollToSection(5)"></div>
+</div>
+
+<!-- JavaScript -->
+<script>
+  const container = document.getElementById('container');
+  const dots = document.querySelectorAll('.dot');
+  const totalSections = dots.length;
+  let current = 0;
+
+  function scrollToSection(index) {
+    current = index;
+    container.style.transform = `translateX(-${index * 100}vw)`;
+    dots.forEach(dot => dot.classList.remove('active'));
+    dots[index].classList.add('active');
+  }
+
+  // Arrow Key Navigation
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') {
+      current = Math.min(current + 1, totalSections - 1);
+      scrollToSection(current);
+    } else if (e.key === 'ArrowLeft') {
+      current = Math.max(current - 1, 0);
+      scrollToSection(current);
+    }
+  });
+
+  // Mouse Wheel Navigation
+  window.addEventListener('wheel', (e) => {
+    if (e.deltaY > 0) {
+      current = Math.min(current + 1, totalSections - 1);
+    } else {
+      current = Math.max(current - 1, 0);
+    }
+    scrollToSection(current);
+  });
+</script>
+
+</body>
+</html>

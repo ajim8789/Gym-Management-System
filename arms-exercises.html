@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arms Exercises</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background: #111;
+            color: white;
+        }
+        /* Heading */
+        
+        .heading {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .heading h1 {
+            font-size: 45px;
+            color: #ff9800;
+            margin-bottom: 10px;
+        }
+        
+        .heading p {
+            color: #ccc;
+            font-size: 18px;
+        }
+        /* Container */
+        
+        .exercise-container {
+            width: 90%;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            padding-bottom: 50px;
+        }
+        /* Card */
+        
+        .exercise-card {
+            position: relative;
+            height: 380px;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: 0.4s;
+            background: #222;
+        }
+        
+        .exercise-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(255, 152, 0, 0.4);
+        }
+        /* Image */
+        
+        .exercise-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+        
+        .exercise-card:hover img {
+            transform: scale(1.1);
+        }
+        /* Overlay */
+        
+        .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 25px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.1));
+        }
+        
+        .overlay h2 {
+            color: #ff9800;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        
+        .overlay p {
+            font-size: 15px;
+            color: #ddd;
+            line-height: 1.5;
+        }
+        /* Button */
+        
+        .btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: #ff9800;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: 0.3s;
+        }
+        
+        .btn:hover {
+            background: white;
+            color: #111;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="heading">
+        <h1>Arms Exercises</h1>
+        <p>Build Bigger Biceps & Stronger Triceps</p>
+    </div>
+
+    <div class="exercise-container">
+
+        <!-- Card 1 -->
+        <div class="exercise-card">
+            <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=1200&auto=format&fit=crop" alt="">
+
+            <div class="overlay">
+                <h2>Bicep Curl</h2>
+                <p>Increase arm strength and build bigger biceps using dumbbell curls.</p>
+                <a href="#" class="btn">Read More</a>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="exercise-card">
+            <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1200&auto=format&fit=crop" alt="">
+
+            <div class="overlay">
+                <h2>Hammer Curl</h2>
+                <p>Targets brachialis and forearms for thicker and stronger arms.</p>
+                <a href="#" class="btn">Read More</a>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="exercise-card">
+            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1200&auto=format&fit=crop" alt="">
+
+            <div class="overlay">
+                <h2>Tricep Pushdown</h2>
+                <p>One of the best cable exercises for building triceps definition.</p>
+                <a href="#" class="btn">Read More</a>
+            </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="exercise-card">
+            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=1200&auto=format&fit=crop" alt="">
+
+            <div class="overlay">
+                <h2>Preacher Curl</h2>
+                <p>Perfect isolation movement for maximum bicep muscle activation.</p>
+                <a href="#" class="btn">Read More</a>
+            </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="exercise-card">
+            <img src="https://images.unsplash.com/photo-1599058917212-d750089bc07f?q=80&w=1200&auto=format&fit=crop" alt="">
+
+            <div class="overlay">
+                <h2>Close Grip Bench</h2>
+                <p>Powerful compound movement for triceps mass and upper body strength.</p>
+                <a href="#" class="btn">Read More</a>
+            </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="exercise-card">
+            <img src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1?q=80&w=1200&auto=format&fit=crop" alt="">
+
+            <div class="overlay">
+                <h2>Concentration Curl</h2>
+                <p>Focuses on peak contraction for detailed bicep growth.</p>
+                <a href="#" class="btn">Read More</a>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

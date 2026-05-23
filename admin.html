@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arnold's Gym Admin Panel</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background: #f4f4f4;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(45deg, #ff1744, #ff5252);
+            color: white;
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        header h1 {
+            margin-bottom: 15px;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .nav-buttons button {
+            padding: 12px 18px;
+            border: none;
+            border-radius: 12px;
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+        
+        .nav-buttons button:hover {
+            background: #0056b3;
+            transform: translateY(-2px);
+        }
+        
+        .container {
+            background: white;
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+        
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        label {
+            display: block;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+        
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            border: 2px solid #007bff;
+            border-radius: 12px;
+        }
+        
+        .action-btn {
+            margin-top: 20px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 12px;
+            background: #28a745;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .action-btn:hover {
+            background: #1e7e34;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+        
+        th {
+            background: #007bff;
+            color: white;
+        }
+        
+        .delete-btn {
+            background: red;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        
+        .edit-btn {
+            background: #ff9800;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        
+        .status-active {
+            background: green;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .status-expired {
+            background: red;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        /* POPUP */
+        
+        .popup {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 12px;
+            color: white;
+            font-weight: bold;
+            z-index: 9999;
+            animation: slideIn 0.4s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .success {
+            background: #28a745;
+        }
+        
+        .error {
+            background: #dc3545;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @media(max-width:768px) {
+            .nav-buttons {
+                flex-direction: column;
+            }
+            table,
+            thead,
+            tbody,
+            th,
+            td,
+            tr {
+                display: block;
+            }
+            thead {
+                display: none;
+            }
+            tr {
+                background: #fff;
+                margin-bottom: 15px;
+                padding: 10px;
+                border-radius: 12px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            }
+            td {
+                border: none;
+                position: relative;
+                padding-left: 50%;
+                text-align: right;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+
+        <h1>Arnold's Gym Admin Panel</h1>
+
+        <div class="nav-buttons">
+
+            <button onclick="showSection('addMember')">
+Add Member
+</button>
+
+            <button onclick="showSection('updateMember')">
+Update Member
+</button>
+
+            <button onclick="showSection('viewList')">
+View Members
+</button>
+
+            <button onclick="showSection('staffSection')">
+Staff List
+</button>
+
+            <button onclick="showSection('attendanceSection')">
+Staff Attendance
+</button>
+
+            <button onclick="logout()">
+Logout
+</button>
+
+        </div>
+
+    </header>
+
+    <!-- ADD MEMBER -->
+
+    <div class="container section" id="addMember">
+
+        <h2>Add New Member</h2>
+
+        <label>Full Name</label>
+        <input type="text" id="name">
+
+        <label>Payment Amount</label>
+        <input type="number" id="payment">
+
+        <label>Membership Valid Until</label>
+        <input type="date" id="validityDate">
+
+        <button class="action-btn" onclick="addMember()">
+Add Member
+</button>
+
+    </div>
+
+    <!-- UPDATE MEMBER -->
+
+    <div class="container section" id="updateMember">
+
+        <h2>Update Members</h2>
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Name</th>
+                    <th>Payment</th>
+                    <th>Validity</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="updateTable"></tbody>
+
+        </table>
+
+    </div>
+
+    <!-- VIEW MEMBERS -->
+
+    <div class="container section" id="viewList">
+
+        <h2>Members List</h2>
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>S.No</th>
+                    <th>Name</th>
+                    <th>Payment</th>
+                    <th>Validity</th>
+                    <th>Days Left</th>
+                    <th>Status</th>
+                    <th>Receipt</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="memberList"></tbody>
+
+        </table>
+
+    </div>
+
+    <!-- STAFF -->
+
+    <div class="container section" id="staffSection">
+
+        <h2>Staff List</h2>
+
+        <label>Staff Name</label>
+        <input type="text" id="staffName">
+
+        <label>Position</label>
+        <input type="text" id="staffRole">
+
+        <label>Salary</label>
+        <input type="number" id="staffSalary">
+
+        <button class="action-btn" onclick="addStaff()">
+Add Staff
+</button>
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>S.No</th>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Salary</th>
+                    <th>Action</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="staffList"></tbody>
+
+        </table>
+
+    </div>
+
+    <!-- ATTENDANCE -->
+
+    <div class="container section" id="attendanceSection">
+
+        <h2>Staff Attendance</h2>
+
+        <h3 id="todayDate"></h3>
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>S.No</th>
+                    <th>Name</th>
+                    <th>Present</th>
+                    <th>Absent</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="attendanceList"></tbody>
+
+        </table>
+
+        <button class="action-btn" onclick="sendAttendanceWhatsApp()">
+
+Send Attendance WhatsApp
+
+</button>
+
+        <button class="action-btn" onclick="sendAttendanceEmail()">
+
+Send Attendance Email
+
+</button>
+
+    </div>
+
+    <script>
+        const members = [];
+
+        const staffMembers = [
+
+            {
+                name: "Rahul Sharma",
+                role: "Trainer",
+                salary: 25000
+            }, {
+                name: "Amit Kumar",
+                role: "Manager",
+                salary: 35000
+            }, {
+                name: "Rohit Singh",
+                role: "Trainer",
+                salary: 24000
+            }
+
+        ];
+
+        let attendanceData = {};
+
+        /* POPUP */
+
+        function showPopup(message, type = "success") {
+
+            const popup = document.createElement("div");
+
+            popup.className = `popup ${type}`;
+
+            popup.innerHTML = message;
+
+            document.body.appendChild(popup);
+
+            setTimeout(() => {
+
+                popup.remove();
+
+            }, 3000);
+
+        }
+
+        /* MEMBER */
+
+        function addMember() {
+
+            const name = document.getElementById("name").value;
+            const payment = document.getElementById("payment").value;
+            const validityDate = document.getElementById("validityDate").value;
+
+            if (!name || !payment || !validityDate) {
+
+                showPopup("Please Fill All Fields", "error");
+                return;
+
+            }
+
+            members.push({
+                name,
+                payment,
+                validityDate
+            });
+
+            renderAllTables();
+
+            document.getElementById("name").value = "";
+            document.getElementById("payment").value = "";
+            document.getElementById("validityDate").value = "";
+
+            showPopup(`New Member Added : ${name}`);
+
+        }
+
+        function getRemainingDays(date) {
+
+            const today = new Date();
+            const expiry = new Date(date);
+
+            return Math.ceil(
+                (expiry - today) / (1000 * 60 * 60 * 24)
+            );
+
+        }
+
+        function getStatus(date) {
+
+            const remaining = getRemainingDays(date);
+
+            if (remaining >= 0) {
+
+                return `<span class="status-active">
+Active
+</span>`;
+
+            } else {
+
+                return `<span class="status-expired">
+Expired
+</span>`;
+
+            }
+
+        }
+
+        function renderMemberList() {
+
+            const list = document.getElementById("memberList");
+
+            list.innerHTML = "";
+
+            members.forEach((member, index) => {
+
+                const remaining = getRemainingDays(member.validityDate);
+
+                list.innerHTML += `
+
+<tr>
+
+<td>${index+1}</td>
+
+<td>${member.name}</td>
+
+<td>₹${member.payment}</td>
+
+<td>${member.validityDate}</td>
+
+<td>
+
+${remaining>=0 ? remaining : 'Expired'}
+
+</td>
+
+<td>
+
+${getStatus(member.validityDate)}
+
+</td>
+
+<td>
+
+<button class="whatsapp-btn"
+onclick="sendReceiptWhatsApp(${index})">
+
+WhatsApp
+
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+            });
+
+        }
+
+        function renderUpdateTable() {
+
+            const table = document.getElementById("updateTable");
+
+            table.innerHTML = "";
+
+            members.forEach((member, index) => {
+
+                table.innerHTML += `
+
+<tr>
+
+<td>${member.name}</td>
+
+<td>
+
+<input
+type="number"
+value="${member.payment}"
+onchange="updatePayment(${index},this.value)"
+>
+
+</td>
+
+<td>
+
+<input
+type="date"
+value="${member.validityDate}"
+onchange="updateValidity(${index},this.value)"
+>
+
+</td>
+
+<td>
+
+${getStatus(member.validityDate)}
+
+</td>
+
+<td>
+
+<button
+class="edit-btn"
+onclick="editMember(${index})">
+
+Modify
+
+</button>
+
+<button
+class="delete-btn"
+onclick="deleteMember(${index})">
+
+Delete
+
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+            });
+
+        }
+
+        function updatePayment(index, value) {
+
+            members[index].payment = value;
+
+            showPopup(
+                `${members[index].name} Payment Updated`
+            );
+
+        }
+
+        function updateValidity(index, value) {
+
+            members[index].validityDate = value;
+
+            renderAllTables();
+
+            showPopup(
+                `${members[index].name} Validity Updated`
+            );
+
+        }
+
+        function editMember(index) {
+
+            const oldName = members[index].name;
+
+            const newName = prompt(
+                "Edit Member Name",
+                members[index].name
+            );
+
+            const newPayment = prompt(
+                "Edit Payment",
+                members[index].payment
+            );
+
+            const newValidity = prompt(
+                "Edit Validity Date",
+                members[index].validityDate
+            );
+
+            if (newName && newPayment && newValidity) {
+
+                members[index].name = newName;
+                members[index].payment = newPayment;
+                members[index].validityDate = newValidity;
+
+                renderAllTables();
+
+                showPopup(
+                    `Member Updated :
+${oldName} → ${newName}`
+                );
+
+            }
+
+        }
+
+        function deleteMember(index) {
+
+            const deletedName = members[index].name;
+
+            if (confirm("Delete Member?")) {
+
+                members.splice(index, 1);
+
+                renderAllTables();
+
+                showPopup(
+                    `Member Deleted : ${deletedName}`,
+                    "error"
+                );
+
+            }
+
+        }
+
+        function sendReceiptWhatsApp(index) {
+
+            const member = members[index];
+
+            const remaining =
+                getRemainingDays(member.validityDate);
+
+            const message =
+
+                `Arnold's Gym Receipt
+
+Name: ${member.name}
+
+Payment: ₹${member.payment}
+
+Validity: ${member.validityDate}
+
+Remaining Days: ${remaining}`;
+
+            window.open(
+                `https://wa.me/?text=${encodeURIComponent(message)}`
+            );
+
+        }
+
+        /* STAFF */
+
+        function addStaff() {
+
+            const name = document.getElementById("staffName").value;
+            const role = document.getElementById("staffRole").value;
+            const salary = document.getElementById("staffSalary").value;
+
+            if (!name || !role || !salary) {
+
+                showPopup("Please Fill All Fields", "error");
+                return;
+
+            }
+
+            staffMembers.push({
+                name,
+                role,
+                salary
+            });
+
+            renderStaff();
+
+            document.getElementById("staffName").value = "";
+            document.getElementById("staffRole").value = "";
+            document.getElementById("staffSalary").value = "";
+
+            showPopup(
+                `New Staff Added : ${name}`
+            );
+
+        }
+
+        function renderStaff() {
+
+            const list = document.getElementById("staffList");
+
+            list.innerHTML = "";
+
+            staffMembers.forEach((staff, index) => {
+
+                list.innerHTML += `
+
+<tr>
+
+<td>${index+1}</td>
+
+<td>${staff.name}</td>
+
+<td>${staff.role}</td>
+
+<td>
+
+<input
+type="number"
+value="${staff.salary}"
+style="
+width:120px;
+padding:8px;
+border-radius:8px;
+border:2px solid #007bff;
+text-align:center;
+"
+onchange="updateStaffSalary(${index},this.value)"
+>
+
+</td>
+
+<td>
+
+<button class="edit-btn"
+onclick="editStaff(${index})">
+
+Edit
+
+</button>
+
+<button class="delete-btn"
+onclick="deleteStaff(${index})">
+
+Delete
+
+</button>
+
+</td>
+
+</tr>
+
+`;
+
+            });
+
+        }
+
+        function updateStaffSalary(index, value) {
+
+            staffMembers[index].salary = value;
+
+            showPopup(
+                `${staffMembers[index].name} Salary Updated`
+            );
+
+        }
+
+        function editStaff(index) {
+
+            const oldName = staffMembers[index].name;
+
+            const newName = prompt(
+                "Edit Staff Name",
+                staffMembers[index].name
+            );
+
+            const newRole = prompt(
+                "Edit Staff Role",
+                staffMembers[index].role
+            );
+
+            const newSalary = prompt(
+                "Edit Staff Salary",
+                staffMembers[index].salary
+            );
+
+            if (newName && newRole && newSalary) {
+
+                staffMembers[index].name = newName;
+                staffMembers[index].role = newRole;
+                staffMembers[index].salary = newSalary;
+
+                renderStaff();
+
+                showPopup(
+                    `Staff Updated :
+${oldName} → ${newName}`
+                );
+
+            }
+
+        }
+
+        function deleteStaff(index) {
+
+            const deletedName = staffMembers[index].name;
+
+            if (confirm("Delete Staff?")) {
+
+                staffMembers.splice(index, 1);
+
+                renderStaff();
+                renderAttendance();
+
+                showPopup(
+                    `Staff Deleted : ${deletedName}`,
+                    "error"
+                );
+
+            }
+
+        }
+
+        /* ATTENDANCE */
+
+        function renderAttendance() {
+
+            const attendance =
+                document.getElementById("attendanceList");
+
+            attendance.innerHTML = "";
+
+            const today =
+                new Date().toLocaleDateString();
+
+            document.getElementById("todayDate")
+                .innerHTML = "Today's Date : " + today;
+
+            if (!attendanceData[today]) {
+
+                attendanceData[today] = {};
+
+            }
+
+            staffMembers.forEach((staff, index) => {
+
+                if (!attendanceData[today][staff.name]) {
+
+                    attendanceData[today][staff.name] = "Present";
+
+                }
+
+                const status =
+                    attendanceData[today][staff.name];
+
+                attendance.innerHTML += `
+
+<tr>
+
+<td>${index+1}</td>
+
+<td>${staff.name}</td>
+
+<td>
+
+<input type="checkbox"
+
+${status==="Present"?"checked":""}
+
+onchange="updateAttendance(
+'${staff.name}',
+'Present'
+)">
+
+</td>
+
+<td>
+
+<input type="checkbox"
+
+${status==="Absent"?"checked":""}
+
+onchange="updateAttendance(
+'${staff.name}',
+'Absent'
+)">
+
+</td>
+
+</tr>
+
+`;
+
+            });
+
+        }
+
+        function updateAttendance(name, status) {
+
+            const today =
+                new Date().toLocaleDateString();
+
+            attendanceData[today][name] = status;
+
+            renderAttendance();
+
+            showPopup(
+                `${name} Marked ${status}`
+            );
+
+        }
+
+        function sendAttendanceWhatsApp() {
+
+            const today =
+                new Date().toLocaleDateString();
+
+            let message =
+                `Arnold's Gym Staff Attendance
+
+Date: ${today}
+
+`;
+
+            staffMembers.forEach((staff, index) => {
+
+                const status =
+                    attendanceData[today][staff.name];
+
+                message +=
+                    `${index+1}. ${staff.name} - ${status}\n`;
+
+            });
+
+            window.open(
+                `https://wa.me/?text=${encodeURIComponent(message)}`
+            );
+
+            showPopup(
+                "Attendance Sent On WhatsApp"
+            );
+
+        }
+
+        function sendAttendanceEmail() {
+
+            const today =
+                new Date().toLocaleDateString();
+
+            let body =
+                `Arnold's Gym Staff Attendance
+
+Date: ${today}
+
+`;
+
+            staffMembers.forEach((staff, index) => {
+
+                const status =
+                    attendanceData[today][staff.name];
+
+                body +=
+                    `${index+1}. ${staff.name} - ${status}\n`;
+
+            });
+
+            window.location.href =
+                `mailto:?subject=Today's Staff Attendance&body=${encodeURIComponent(body)}`;
+
+            showPopup(
+                "Attendance Email Ready"
+            );
+
+        }
+
+        /* SECTION */
+
+        function showSection(id) {
+
+            document.querySelectorAll(".section")
+                .forEach(sec => sec.style.display = "none");
+
+            document.getElementById(id).style.display = "block";
+
+            renderAllTables();
+
+        }
+
+        function renderAllTables() {
+
+            renderMemberList();
+            renderUpdateTable();
+            renderStaff();
+            renderAttendance();
+
+        }
+
+        function logout() {
+
+            showPopup("Logged Out", "error");
+
+            setTimeout(() => {
+
+                window.location.href = "index.html";
+
+            }, 1000);
+
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+
+            showSection("addMember");
+
+            renderAllTables();
+
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login & Signup Slide Form</title>
+
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #c210ad, #77e707, #35038d, #e20712);
+      background-size: 400% 400%;
+      animation: gradientBG 10s ease infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      background: #fff;
+      width: 90%;
+      max-width: 400px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .form-btns {
+      display: flex;
+      background-color: #f1f1f1;
+    }
+
+    .form-btns button {
+      flex: 1;
+      padding: 15px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1rem;
+      transition: 0.3s;
+    }
+
+    .form-btns button.active {
+      background-color: #e0e0e0;
+      color: #333;
+    }
+
+    .form-slider {
+      display: flex;
+      width: 200%;
+      transition: transform 0.5s ease-in-out;
+      transform: translateX(-50%); /* ✅ Signup visible first */
+    }
+
+    .form-section {
+      width: 100%;
+      padding: 25px;
+      background-color: #ede6e6;
+    }
+
+    .form-section h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .form-section input,
+    .form-section select {
+      width: 100%;
+      padding: 12px 15px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      outline: none;
+      transition: border 0.3s;
+    }
+
+    .form-section input:focus,
+    .form-section select:focus {
+      border-color: #74ebd5;
+    }
+
+    .form-section button {
+      width: 100%;
+      padding: 12px;
+      background: #74ebd5;
+      border: none;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: background 0.3s;
+    }
+
+    .form-section button:hover {
+      background: #64dbd0;
+    }
+
+    .home-button {
+      display: block;
+      text-align: center;
+      background-color: #1b34f1;
+      color: white;
+      text-decoration: none;
+      padding: 10px;
+      border-radius: 6px;
+      margin-top: 10px;
+      transition: background-color 0.3s;
+    }
+
+    .home-button:hover {
+      background-color: #0077a8;
+    }
+
+    .icon {
+      margin-top: -28px;
+      text-align: center;
+    
+    }
+
+    .icon a {
+      color: #333;
+      margin: 20px;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .icon a:hover {
+      color: #e40f0f;
+    }
+
+    @media (max-width: 480px) {
+      .form-section h2 {
+        font-size: 1.3rem;
+      }
+
+      .form-btns button {
+        font-size: 0.9rem;
+        padding: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="form-btns">
+      <button id="loginBtn" onclick="showLogin()">Login</button>
+      <button id="signupBtn" class="active" onclick="showSignup()">Signup</button>
+    </div>
+
+    <div class="form-slider" id="formSlider">
+
+      <!-- Login Form -->
+      <div class="form-section">
+        <h2>Login</h2>
+        <input type="email" placeholder="Email" required />
+        <input type="password" placeholder="Password" required />
+        <br><br><br>
+        <button>Login</button>
+        <br><br>
+
+        <a href="index.html" class="home-button"> 
+          <i class="fa fa-home"></i> Home
+        </a>
+        <br><br><br><br>
+
+        <div class="icon">
+          <a href="https://www.facebook.com/share/1BDMR9u6GL/" target="_blank">
+            <i class="fab fa-facebook" style="font-size: 35px;"></i>
+          </a>
+          <a href="https://www.twitter.com/" target="_blank">
+            <i class="fab fa-twitter" style="font-size: 35px;"></i>
+          </a>
+          <a href="https://www.instagram.com/ajim___khan_09/" target="_blank">
+            <i class="fab fa-instagram" style="font-size: 35px;"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Signup Form -->
+      <div class="form-section">
+        <h2>Signup</h2>
+        <input type="text" placeholder="Full Name" required />
+        <input type="email" placeholder="Email" required />
+        <input type="tel" placeholder="Mobile" required />
+        <input type="password" placeholder="Password" required />
+        <input type="password" placeholder="Confirm Password" required />
+
+        <select required>
+          <option value="" disabled selected>Select Gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
+
+        <button>Register</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- JavaScript for Slide -->
+  <script>
+    const loginBtn = document.getElementById('loginBtn');
+    const signupBtn = document.getElementById('signupBtn');
+    const formSlider = document.getElementById('formSlider');
+
+    function showLogin() {
+      formSlider.style.transform = "translateX(0%)";
+      loginBtn.classList.add('active');
+      signupBtn.classList.remove('active');
+    }
+
+    function showSignup() {
+      formSlider.style.transform = "translateX(-50%)";
+      signupBtn.classList.add('active');
+      loginBtn.classList.remove('active');
+    }
+  </script>
+
+</body>
+</html>
