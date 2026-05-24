@@ -1,38 +1,298 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="leg-Workout.css">
-    <title>Leg-Workout</title>
+    <title>Leg Exercises</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background: #0d0d0d;
+            color: white;
+            overflow-x: hidden;
+        }
+        /* HEADER */
+        
+        .header {
+            width: 100%;
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(to right, #111, #1f1f1f);
+        }
+        
+        .header h1 {
+            font-size: 55px;
+            color: #ff9800;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .header p {
+            color: #ccc;
+            font-size: 18px;
+            max-width: 700px;
+            margin: auto;
+            line-height: 1.7;
+        }
+        /* CONTAINER */
+        
+        .container {
+            width: 90%;
+            margin: auto;
+            padding: 50px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        /* CARD */
+        
+        .card {
+            position: relative;
+            height: 430px;
+            border-radius: 25px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: 0.5s ease;
+            background: #1b1b1b;
+        }
+        
+        .card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(255, 152, 0, 0.35);
+        }
+        /* IMAGE */
+        
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.6s;
+        }
+        
+        .card:hover img {
+            transform: scale(1.12);
+        }
+        /* OVERLAY */
+        
+        .overlay {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            padding: 28px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.1));
+        }
+        
+        .overlay h2 {
+            font-size: 30px;
+            margin-bottom: 12px;
+            color: #ff9800;
+        }
+        
+        .overlay p {
+            color: #ddd;
+            line-height: 1.6;
+            font-size: 15px;
+        }
+        /* BUTTON */
+        
+        .btn {
+            display: inline-block;
+            margin-top: 18px;
+            padding: 12px 24px;
+            background: #ff9800;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+        
+        .btn:hover {
+            background: white;
+            color: #111;
+        }
+        /* FOOTER */
+        
+        .footer {
+            text-align: center;
+            padding: 25px;
+            background: #111;
+            color: #888;
+            font-size: 15px;
+        }
+        /* RESPONSIVE */
+        
+        @media(max-width:768px) {
+            .header h1 {
+                font-size: 40px;
+            }
+            .header p {
+                font-size: 16px;
+            }
+            .card {
+                height: 380px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-    
-  <section class="services" id="services">
-    <h2 class="heading">My services <span>— Leg-Workout</span></h2>
 
-    <div class="box-container">
-      <div class="box">
-        <i class="fas fa-paint-brush"></i>
-        <h3>Web Design</h3>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem quia sunt, quasi quo illo enim.</p>
-      </div>
+    <!-- HEADER -->
 
-      <div class="box advertising">
-        <i class="fas fa-chart-line"></i>
-        <h3>Advertising</h3>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem quia sunt, quasi quo illo enim.</p>
-      </div>
+    <div class="header">
+        <h1>Leg Exercises</h1>
 
-      <div class="box">
-        <i class="fas fa-bullhorn"></i>
-        <h3>Marketing</h3>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem quia sunt, quasi quo illo enim.</p>
-      </div>
+        <p>
+            Build stronger quads, hamstrings, glutes, and calves with these powerful leg workouts for muscle growth and strength.
+        </p>
     </div>
-  </section>
-  <section>
-    <button> <a href="index.html ">Go to home</a></button>
-</section>
+
+    <!-- EXERCISE SECTION -->
+
+    <div class="container">
+
+        <!-- CARD 1 -->
+
+        <div class="card">
+
+            <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1200&auto=format&fit=crop" alt="Squats">
+
+            <div class="overlay">
+
+                <h2>Barbell Squat</h2>
+
+                <p>
+                    One of the best compound leg exercises for building overall lower-body power, muscle mass, and core strength.
+                </p>
+
+                <a href="#" class="btn">Read More</a>
+
+            </div>
+
+        </div>
+
+        <!-- CARD 2 -->
+
+        <div class="card">
+
+            <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=1200&auto=format&fit=crop" alt="Leg Press">
+
+            <div class="overlay">
+
+                <h2>Leg Press</h2>
+
+                <p>
+                    Targets quads, hamstrings, and glutes while allowing heavy weight training with better lower-back support.
+                </p>
+
+                <a href="#" class="btn">Read More</a>
+
+            </div>
+
+        </div>
+
+        <!-- CARD 3 -->
+
+        <div class="card">
+
+            <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1200&auto=format&fit=crop" alt="Lunges">
+
+            <div class="overlay">
+
+                <h2>Walking Lunges</h2>
+
+                <p>
+                    Excellent unilateral movement that improves balance, stability, and builds stronger legs and glutes.
+                </p>
+
+                <a href="#" class="btn">Read More</a>
+
+            </div>
+
+        </div>
+
+        <!-- CARD 4 -->
+
+        <div class="card">
+
+            <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=1200&auto=format&fit=crop" alt="Romanian Deadlift">
+
+            <div class="overlay">
+
+                <h2>Romanian Deadlift</h2>
+
+                <p>
+                    Powerful hamstring and glute exercise that improves posterior chain strength and flexibility.
+                </p>
+
+                <a href="#" class="btn">Read More</a>
+
+            </div>
+
+        </div>
+
+        <!-- CARD 5 -->
+
+        <div class="card">
+
+            <img src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1?q=80&w=1200&auto=format&fit=crop" alt="Leg Extension">
+
+            <div class="overlay">
+
+                <h2>Leg Extension</h2>
+
+                <p>
+                    Isolation movement that focuses directly on the quadriceps for better muscle definition and growth.
+                </p>
+
+                <a href="#" class="btn">Read More</a>
+
+            </div>
+
+        </div>
+
+        <!-- CARD 6 -->
+
+        <div class="card">
+
+            <img src="https://images.unsplash.com/photo-1599058917212-d750089bc07f?q=80&w=1200&auto=format&fit=crop" alt="Calf Raise">
+
+            <div class="overlay">
+
+                <h2>Calf Raise</h2>
+
+                <p>
+                    Essential lower-leg exercise to strengthen calves and improve ankle stability and athletic performance.
+                </p>
+
+                <a href="#" class="btn">Read More</a>
+
+            </div>
+
+        </div>
+
+    </div>
+    <center>
+        <a href="index.html" class="btn">Back to Home</a> <br><br><br><br>
+    </center>
+
+    <!-- FOOTER -->
+
+    <div class="footer">
+        © 2025 Gym Workout • Leg Exercise Section
+    </div>
+
 </body>
+
 </html>
